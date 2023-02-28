@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<p>
+  {{user.name}}
+  {{loginStatus}}
+</p>
+<p>
+  <a href="sign_in.html">登录</a>
+</p>
+<p class="logout">
+  <button>注销</button>
+</p>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  const $logout = $('.logout')
+  $logout.on('click', (e) => {
+    $.ajax({  //发送ajax异步请求
+      method: 'POST',
+      url: '/logout',
+      contentType: 'text/json; charset=UTF-8',
+    }).then(() => {
+      alert('注销成功')
+      location.href = '/sign_in.html'  //成功显示并跳转
+    }, () => {})
+  })
+</script>
+</html>
